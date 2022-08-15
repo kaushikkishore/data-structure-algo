@@ -1,20 +1,14 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-function tandemBicycle(redShirtSpeeds, blueShirtSpeeds, fastest) {
-    redShirtSpeeds.sort((a, b) => a - b);
-    if (fastest) {
-        blueShirtSpeeds.sort((a, b) => b - a);
+function getNthFib(n) {
+    const lastTwo = [0, 1];
+    let counter = 3;
+    while (counter <= n) {
+        const nextFib = lastTwo[0] + lastTwo[1];
+        lastTwo[0] = lastTwo[1];
+        lastTwo[1] = nextFib;
+        counter++;
     }
-    else {
-        blueShirtSpeeds.sort((a, b) => a - b);
-    }
-    let total = 0;
-    let i = 0;
-    while (redShirtSpeeds.length > i) {
-        total += Math.max(redShirtSpeeds[i], blueShirtSpeeds[i]);
-        i++;
-    }
-    return total;
+    return n > 1 ? lastTwo[1] : lastTwo[0];
 }
-tandemBicycle([3, 6, 7, 2, 1], [5, 5, 3, 9, 2], false);
+console.log(getNthFib(3));
 //# sourceMappingURL=index.js.map
