@@ -1,10 +1,10 @@
-const combination = (arr) => {
-  let final = [[]];
+export const combination = (arr: number[]) => {
+  let final: number[][] = [[]];
 
   for (let j = 0; j < arr.length; j++) {
     let finalClone = [...final];
     for (let index = 0; index < finalClone.length; index++) {
-      let cloned = [...finalClone[index]];
+      let cloned: number[] = [...finalClone[index]];
       cloned.push(arr[j]);
       final.push(cloned);
     }
@@ -12,7 +12,12 @@ const combination = (arr) => {
   return JSON.stringify(final);
 };
 
-const generate = (arr, index = 0, current = [], result = []) => {
+export const generate = (
+  arr: number[],
+  index: number = 0,
+  current: number[] = [],
+  result: number[][] = []
+) => {
   if (current.length === 2) {
     result.push([...current]);
   }
