@@ -1,23 +1,26 @@
-// First makeRelationShipSet
-// s = { key: string, value: string[] }
-//  depends on (string, string, set);
-// check the key in the s
-// Not available insert key with empty array
-// s { 'a': [] }
-// depends on { 'a':['b'], 'b':'a' }
-
-function makeRelationshipSet() {
-  return { dep: [], exc: [] };
+function allPathsSourceTarget(graph) {
+  return allPaths(graph, 0, graph.length - 1, [[]], [0]);
 }
 
-function dependsOn(a, b, s) {
-  s.dep.push([a, b]);
-  return s;
+function allPaths(graph, src, des, result, current = []) {
+  if (src === des) {
+    result.push([...current]);
+    return;
+  }
+  for (let item of graph[src]) {
+    current.push(item);
+    allPaths(graph, item, des, result, current);
+    current.pop();
+  }
+  return result;
 }
 
-function areExclusive(a, b, s) {
-  s.exc.push(a, b);
-  return s;
+function getAdjancyList(graph) {
+  let list = {};
+  for (let i = 0; i < graph.length; i++) {
+    list[i] = graph[i];
+  }
+  return list;
 }
 
-// Build the adgency list of dependsOn and areExclusive
+console.log(allPathsSourceTarget([[4, 3, 1], [3, 2, 4], [3], [4], []]));
