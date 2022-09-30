@@ -1,3 +1,5 @@
+// Find the difference between two arrays and the difference shoudl tell which items you got diff. and it should be minimum.
+
 function smallestDifference(arrayOne, arrayTwo) {
   // Write your code here.
   arrayOne = arrayOne.sort((a, b) => a - b);
